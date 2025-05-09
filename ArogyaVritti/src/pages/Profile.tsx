@@ -6,12 +6,11 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/components/ui/sonner";
 import { Link } from "react-router-dom";
-import ApiSettings from "@/components/ApiSettings";
 import PeriodTracker from "@/components/PeriodTracker";
-import { ArrowLeft, User, Settings, Shield, Database, Droplet } from "lucide-react";
+import { ArrowLeft, User, Settings, Shield, Droplet } from "lucide-react";
 
 const Profile = () => {
-  // Mock user data - in a real app this would come from your MongoDB API
+  // Mock user data - in a real app this would come from your backend
   const [user, setUser] = useState({
     name: "John Doe",
     email: "john.doe@example.com",
@@ -32,7 +31,7 @@ const Profile = () => {
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would call your MongoDB API
+    // In a real app, this would call your backend API
     setUser(formData);
     setIsEditing(false);
     toast("Profile Updated", {
@@ -54,7 +53,7 @@ const Profile = () => {
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Tabs defaultValue="profile">
-          <TabsList className="grid w-full grid-cols-5 mb-8">
+          <TabsList className="grid w-full grid-cols-4 mb-8">
             <TabsTrigger value="profile" className="flex items-center">
               <User size={16} className="mr-2" />
               <span>Profile</span>
@@ -70,10 +69,6 @@ const Profile = () => {
             <TabsTrigger value="preferences" className="flex items-center">
               <Settings size={16} className="mr-2" />
               <span>Preferences</span>
-            </TabsTrigger>
-            <TabsTrigger value="api" className="flex items-center">
-              <Database size={16} className="mr-2" />
-              <span>MongoDB API</span>
             </TabsTrigger>
           </TabsList>
           
@@ -209,10 +204,6 @@ const Profile = () => {
                 <p>Preference settings will be implemented in a future update.</p>
               </CardContent>
             </Card>
-          </TabsContent>
-          
-          <TabsContent value="api">
-            <ApiSettings />
           </TabsContent>
         </Tabs>
       </main>

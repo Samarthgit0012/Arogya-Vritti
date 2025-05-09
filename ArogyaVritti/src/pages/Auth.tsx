@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
@@ -7,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/components/ui/sonner";
-import { useApi } from "@/contexts/ApiContext";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -23,25 +21,15 @@ const Auth = () => {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   
-  const { apiUrl, apiKey, fetchWithAuth } = useApi();
-  
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!apiUrl || !apiKey) {
-      toast("API not configured", {
-        description: "Please configure your MongoDB API in settings first"
-      });
-      return;
-    }
-    
     setIsLoading(true);
     
     try {
-      // This would be replaced with your actual MongoDB API endpoint
-      console.log("Would call login API with:", { email, password });
+      // TODO: Replace with actual API call to your backend
+      console.log("Login attempt:", { email, password });
       
-      // Since we don't have a real endpoint yet, we'll just simulate a successful login
+      // Simulate successful login
       localStorage.setItem("isAuthenticated", "true");
       localStorage.setItem("user", JSON.stringify({ email, name: "Test User" }));
       
@@ -62,19 +50,11 @@ const Auth = () => {
   
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!apiUrl || !apiKey) {
-      toast("API not configured", {
-        description: "Please configure your MongoDB API in settings first"
-      });
-      return;
-    }
-    
     setIsLoading(true);
     
     try {
-      // This would be replaced with your actual MongoDB API endpoint
-      console.log("Would call register API with:", { name, email: registerEmail, password: registerPassword });
+      // TODO: Replace with actual API call to your backend
+      console.log("Registration attempt:", { name, email: registerEmail, password: registerPassword });
       
       toast("Registration successful", {
         description: "Please log in with your new account"
