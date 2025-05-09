@@ -1,9 +1,12 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import MedicalHistory from "@/components/medical-history/MedicalHistory";
+import MedicalReports from "@/components/medical-history/MedicalReports";
+import Telehealth from "@/components/medical-history/Telehealth";
 
 const MedicalRecords = () => {
   return (
@@ -19,19 +22,25 @@ const MedicalRecords = () => {
       </header>
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Card>
-          <CardHeader>
-            <CardTitle>Medical Record Management</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p>Medical records functionality will be implemented in the next phase.</p>
-            <p className="mt-2">
-              This will include secure storage and retrieval of medical documents, 
-              integration with MongoDB Atlas for document management, and image processing
-              for scanned medical reports.
-            </p>
-          </CardContent>
-        </Card>
+        <Tabs defaultValue="history" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-3">
+            <TabsTrigger value="history">Medical History</TabsTrigger>
+            <TabsTrigger value="reports">Medical Reports</TabsTrigger>
+            <TabsTrigger value="telehealth">Telehealth</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="history">
+            <MedicalHistory />
+          </TabsContent>
+
+          <TabsContent value="reports">
+            <MedicalReports />
+          </TabsContent>
+
+          <TabsContent value="telehealth">
+            <Telehealth />
+          </TabsContent>
+        </Tabs>
       </main>
     </div>
   );

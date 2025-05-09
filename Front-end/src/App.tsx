@@ -17,6 +17,9 @@ import Auth from "./pages/Auth";
 import ManageAppointments from "./pages/ManageAppointments";
 import InstantCare from "./components/InstantCare";
 import Layout from "./components/Layout";
+import MedicalHistory from './pages/MedicalHistory';
+import ViewHealthDashboard from './pages/ViewHealthDashboard';
+import SymptomChecker from "@/pages/SymptomChecker";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +50,9 @@ const App = () => (
           <Route path="/emergency" element={<ProtectedRoute><EmergencyServices /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="/instant-care" element={<ProtectedRoute><InstantCare onStartConsultation={() => {}} /></ProtectedRoute>} />
+          <Route path="/medical-history" element={<ProtectedRoute><MedicalHistory /></ProtectedRoute>} />
+          <Route path="/health-dashboard" element={<ProtectedRoute><ViewHealthDashboard /></ProtectedRoute>} />
+          <Route path="/symptom-checker" element={<ProtectedRoute><SymptomChecker /></ProtectedRoute>} />
           
           <Route path="*" element={<NotFound />} />
         </Routes>

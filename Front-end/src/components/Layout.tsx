@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Calendar, MessageSquare, FileText, AlertTriangle, User, Home, LogOut, Menu, ChevronLeft } from "lucide-react";
+import { Calendar, MessageSquare, FileText, AlertTriangle, User, Home, LogOut, Menu, ChevronLeft, Stethoscope } from "lucide-react";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -26,6 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     { path: "/appointments", icon: Calendar, label: "Appointments" },
     { path: "/assistant", icon: MessageSquare, label: "AI Assistant" },
     { path: "/records", icon: FileText, label: "Medical Records" },
+    { path: "/symptom-checker", icon: Stethoscope, label: "Symptom Checker" },
     { path: "/instant-care", icon: AlertTriangle, label: "Instant Care" },
   ];
 
