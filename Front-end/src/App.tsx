@@ -20,6 +20,10 @@ import Layout from "./components/Layout";
 import MedicalHistory from './pages/MedicalHistory';
 import ViewHealthDashboard from './pages/ViewHealthDashboard';
 import SymptomChecker from "@/pages/SymptomChecker";
+import BookAppointment from "@/components/BookAppointment";
+import SheCare from './pages/SheCare';
+// import PregnancyProgress from '@/components/PregnancyProgress';
+// import Emergency from '@/components/Emergency';
 
 const queryClient = new QueryClient();
 
@@ -43,11 +47,14 @@ const App = () => (
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/appointments" element={<ProtectedRoute><Appointments /></ProtectedRoute>} />
           <Route path="/manage-appointments" element={<ProtectedRoute><ManageAppointments /></ProtectedRoute>} />
+          <Route path="/book-appointment" element={<ProtectedRoute><BookAppointment /></ProtectedRoute>} />
           <Route path="/consultation/:id" element={<ProtectedRoute><Consultation /></ProtectedRoute>} />
           <Route path="/devices" element={<ProtectedRoute><DeviceMonitoring /></ProtectedRoute>} />
           <Route path="/assistant" element={<ProtectedRoute><AIAssistant /></ProtectedRoute>} />
           <Route path="/records" element={<ProtectedRoute><MedicalRecords /></ProtectedRoute>} />
-          <Route path="/emergency" element={<ProtectedRoute><EmergencyServices /></ProtectedRoute>} />
+          {/* <Route path="/emergency" element={<ProtectedRoute><Emergency /></ProtectedRoute>} /> */}
+          <Route path="/shecare" element={<ProtectedRoute><SheCare /></ProtectedRoute>} />
+          {/* <Route path="/pregnancy-progress" element={<ProtectedRoute><PregnancyProgress /></ProtectedRoute>} /> */}
           <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="/instant-care" element={<ProtectedRoute><InstantCare onStartConsultation={() => {}} /></ProtectedRoute>} />
           <Route path="/medical-history" element={<ProtectedRoute><MedicalHistory /></ProtectedRoute>} />

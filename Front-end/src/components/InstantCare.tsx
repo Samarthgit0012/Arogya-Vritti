@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Phone, MessageSquare, AlertTriangle, Heart, Clock, MapPin, Bot } from "lucide-react";
+import { Phone, MessageSquare, AlertTriangle, Heart, Clock, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import HealthChatbot from "./HealthChatbot";
+import Emergency from "./Emergency";
 
 interface InstantCareProps {
   onStartConsultation: () => void;
@@ -144,28 +145,8 @@ const InstantCare: React.FC<InstantCareProps> = ({ onStartConsultation }) => {
           ))}
         </div>
 
-        <div className="mt-8 bg-blue-50 rounded-lg p-6">
-          <div className="flex items-start gap-4">
-            <MapPin className="w-6 h-6 text-blue-500 mt-1" />
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900">Nearest Emergency Centers</h3>
-              <p className="text-gray-600 mt-1">
-                If you need immediate in-person care, here are the nearest emergency centers:
-              </p>
-              <div className="mt-4 space-y-2">
-                <div className="bg-white p-3 rounded-md shadow-sm">
-                  <p className="font-medium">City General Hospital</p>
-                  <p className="text-sm text-gray-600">123 Medical Center Drive</p>
-                  <p className="text-sm text-gray-600">Open 24/7</p>
-                </div>
-                <div className="bg-white p-3 rounded-md shadow-sm">
-                  <p className="font-medium">Community Urgent Care</p>
-                  <p className="text-sm text-gray-600">456 Health Street</p>
-                  <p className="text-sm text-gray-600">Open 8 AM - 10 PM</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="mt-8">
+          <Emergency />
         </div>
       </div>
     </div>
