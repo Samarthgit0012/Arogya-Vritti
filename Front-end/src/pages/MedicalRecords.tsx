@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import MedicalHistory from "@/components/medical-history/MedicalHistory";
 import MedicalReports from "@/components/medical-history/MedicalReports";
 import Telehealth from "@/components/medical-history/Telehealth";
-import axios from "axios";
+import api from "@/lib/axios";
 import { toast } from "react-hot-toast";
 
 const MedicalRecords = () => {
@@ -19,7 +19,7 @@ const MedicalRecords = () => {
     const fetchData = async () => {
       try {
         // Fetch medical records data
-        await axios.get('/api/medical/records');
+        await api.get('/api/medical/records');
         setError(null);
       } catch (err) {
         console.error('Error fetching medical records:', err);

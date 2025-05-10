@@ -25,17 +25,17 @@ interface MedicalRecord {
 
 const MedicalHistory = () => {
   const [formData, setFormData] = useState<MedicalRecord>({
-    bloodType: '',
+    bloodType: 'O+',
     allergies: '',
     chronicConditions: '',
     medications: '',
     familyHistory: '',
     surgeries: '',
     lifestyle: {
-      smoking: '',
-      alcohol: '',
-      exercise: '',
-      diet: ''
+      smoking: 'never',
+      alcohol: 'none',
+      exercise: 'moderate',
+      diet: 'regular'
     }
   });
   const [loading, setLoading] = useState(true);
@@ -49,11 +49,36 @@ const MedicalHistory = () => {
     try {
       const response = await api.get('/api/medical/records');
       if (response.data) {
-        setFormData(response.data);
+        // Ensure the lifestyle object exists with default values
+        const data = {
+          ...response.data,
+          lifestyle: {
+            smoking: response.data.lifestyle?.smoking || '',
+            alcohol: response.data.lifestyle?.alcohol || '',
+            exercise: response.data.lifestyle?.exercise || '',
+            diet: response.data.lifestyle?.diet || ''
+          }
+        };
+        setFormData(data);
       }
     } catch (error) {
       console.error('Error fetching medical record:', error);
       toast.error('Failed to load medical record');
+      // Set default form data on error
+      setFormData({
+        bloodType: '',
+        allergies: '',
+        chronicConditions: '',
+        medications: '',
+        familyHistory: '',
+        surgeries: '',
+        lifestyle: {
+          smoking: '',
+          alcohol: '',
+          exercise: '',
+          diet: ''
+        }
+      });
     } finally {
       setLoading(false);
     }

@@ -13,6 +13,10 @@ export interface HealthMetric {
   }[];
 }
 
+const today = new Date();
+const yesterday = new Date();
+yesterday.setDate(today.getDate() - 1);
+
 export const healthMetrics: HealthMetric[] = [
   {
     id: 'blood-pressure',
@@ -20,9 +24,8 @@ export const healthMetrics: HealthMetric[] = [
     unit: 'mmHg',
     normalRange: { min: 90, max: 120 },
     data: [
-      { date: '2024-01-01', value: 120, type: 'systolic' },
-      { date: '2024-02-01', value: 118, type: 'systolic' },
-      { date: '2024-03-01', value: 122, type: 'systolic' },
+      { date: yesterday.toISOString().split('T')[0], value: 118, type: 'blood-pressure' },
+      { date: today.toISOString().split('T')[0], value: 120, type: 'blood-pressure' }
     ]
   },
   {
@@ -31,9 +34,8 @@ export const healthMetrics: HealthMetric[] = [
     unit: 'BPM',
     normalRange: { min: 60, max: 100 },
     data: [
-      { date: '2024-01-01', value: 75, type: 'heart_rate' },
-      { date: '2024-02-01', value: 72, type: 'heart_rate' },
-      { date: '2024-03-01', value: 78, type: 'heart_rate' },
+      { date: yesterday.toISOString().split('T')[0], value: 74, type: 'heart-rate' },
+      { date: today.toISOString().split('T')[0], value: 75, type: 'heart-rate' }
     ]
   },
   {
@@ -42,9 +44,8 @@ export const healthMetrics: HealthMetric[] = [
     unit: 'mg/dL',
     normalRange: { min: 70, max: 140 },
     data: [
-      { date: '2024-01-01', value: 95, type: 'glucose' },
-      { date: '2024-02-01', value: 102, type: 'glucose' },
-      { date: '2024-03-01', value: 98, type: 'glucose' },
+      { date: yesterday.toISOString().split('T')[0], value: 98, type: 'blood-glucose' },
+      { date: today.toISOString().split('T')[0], value: 100, type: 'blood-glucose' }
     ]
   },
   {
@@ -53,9 +54,8 @@ export const healthMetrics: HealthMetric[] = [
     unit: '%',
     normalRange: { min: 95, max: 100 },
     data: [
-      { date: '2024-01-01', value: 98, type: 'spo2' },
-      { date: '2024-02-01', value: 97, type: 'spo2' },
-      { date: '2024-03-01', value: 99, type: 'spo2' },
+      { date: yesterday.toISOString().split('T')[0], value: 97, type: 'oxygen-saturation' },
+      { date: today.toISOString().split('T')[0], value: 98, type: 'oxygen-saturation' }
     ]
   },
   {
@@ -64,9 +64,8 @@ export const healthMetrics: HealthMetric[] = [
     unit: '°F',
     normalRange: { min: 97, max: 99 },
     data: [
-      { date: '2024-01-01', value: 98.2, type: 'temperature' },
-      { date: '2024-02-01', value: 98.4, type: 'temperature' },
-      { date: '2024-03-01', value: 98.1, type: 'temperature' },
+      { date: yesterday.toISOString().split('T')[0], value: 98.4, type: 'body-temperature' },
+      { date: today.toISOString().split('T')[0], value: 98.6, type: 'body-temperature' }
     ]
   },
   {
@@ -75,9 +74,8 @@ export const healthMetrics: HealthMetric[] = [
     unit: 'kg/m²',
     normalRange: { min: 18.5, max: 24.9 },
     data: [
-      { date: '2024-01-01', value: 22.5, type: 'bmi' },
-      { date: '2024-02-01', value: 22.3, type: 'bmi' },
-      { date: '2024-03-01', value: 22.4, type: 'bmi' },
+      { date: yesterday.toISOString().split('T')[0], value: 21.8, type: 'bmi' },
+      { date: today.toISOString().split('T')[0], value: 22, type: 'bmi' }
     ]
   },
   {
@@ -86,9 +84,8 @@ export const healthMetrics: HealthMetric[] = [
     unit: 'g/dL',
     normalRange: { min: 12, max: 16 },
     data: [
-      { date: '2024-01-01', value: 14.2, type: 'hemoglobin' },
-      { date: '2024-02-01', value: 14.0, type: 'hemoglobin' },
-      { date: '2024-03-01', value: 14.1, type: 'hemoglobin' },
+      { date: yesterday.toISOString().split('T')[0], value: 13.8, type: 'hemoglobin' },
+      { date: today.toISOString().split('T')[0], value: 14, type: 'hemoglobin' }
     ]
   },
   {
@@ -97,9 +94,8 @@ export const healthMetrics: HealthMetric[] = [
     unit: 'mg/dL',
     normalRange: { min: 125, max: 200 },
     data: [
-      { date: '2024-01-01', value: 180, type: 'cholesterol' },
-      { date: '2024-02-01', value: 175, type: 'cholesterol' },
-      { date: '2024-03-01', value: 178, type: 'cholesterol' },
+      { date: yesterday.toISOString().split('T')[0], value: 178, type: 'cholesterol' },
+      { date: today.toISOString().split('T')[0], value: 180, type: 'cholesterol' }
     ]
   },
   {
@@ -108,9 +104,8 @@ export const healthMetrics: HealthMetric[] = [
     unit: 'mg/dL',
     normalRange: { min: 0.7, max: 1.3 },
     data: [
-      { date: '2024-01-01', value: 1.0, type: 'creatinine' },
-      { date: '2024-02-01', value: 1.1, type: 'creatinine' },
-      { date: '2024-03-01', value: 1.0, type: 'creatinine' },
+      { date: yesterday.toISOString().split('T')[0], value: 0.98, type: 'creatinine' },
+      { date: today.toISOString().split('T')[0], value: 1.0, type: 'creatinine' }
     ]
   },
   {
@@ -119,9 +114,8 @@ export const healthMetrics: HealthMetric[] = [
     unit: 'mg/dL',
     normalRange: { min: 7, max: 20 },
     data: [
-      { date: '2024-01-01', value: 15, type: 'urea' },
-      { date: '2024-02-01', value: 14, type: 'urea' },
-      { date: '2024-03-01', value: 16, type: 'urea' },
+      { date: yesterday.toISOString().split('T')[0], value: 14, type: 'urea' },
+      { date: today.toISOString().split('T')[0], value: 15, type: 'urea' }
     ]
   },
   {
@@ -130,9 +124,8 @@ export const healthMetrics: HealthMetric[] = [
     unit: 'U/L',
     normalRange: { min: 7, max: 56 },
     data: [
-      { date: '2024-01-01', value: 30, type: 'sgpt' },
-      { date: '2024-02-01', value: 28, type: 'sgpt' },
-      { date: '2024-03-01', value: 32, type: 'sgpt' },
+      { date: yesterday.toISOString().split('T')[0], value: 28, type: 'liver-enzymes' },
+      { date: today.toISOString().split('T')[0], value: 30, type: 'liver-enzymes' }
     ]
   },
   {
@@ -141,9 +134,8 @@ export const healthMetrics: HealthMetric[] = [
     unit: 'mIU/L',
     normalRange: { min: 0.4, max: 4.0 },
     data: [
-      { date: '2024-01-01', value: 2.5, type: 'tsh' },
-      { date: '2024-02-01', value: 2.3, type: 'tsh' },
-      { date: '2024-03-01', value: 2.4, type: 'tsh' },
+      { date: yesterday.toISOString().split('T')[0], value: 2.3, type: 'thyroid' },
+      { date: today.toISOString().split('T')[0], value: 2.5, type: 'thyroid' }
     ]
   }
 ]; 

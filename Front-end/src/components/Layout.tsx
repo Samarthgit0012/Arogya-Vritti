@@ -26,7 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     { path: "/health-dashboard", icon: BarChart3, label: "Health Metrics" },
     { path: "/appointments", icon: Calendar, label: "Appointments" },
     { path: "/assistant", icon: MessageSquare, label: "AI Assistant" },
-    { path: "/records", icon: FileText, label: "Medical Records" },
+    { path: "/medical-records", icon: FileText, label: "Medical Records" },
     { path: "/symptom-checker", icon: Stethoscope, label: "Symptom Checker" },
     { path: "/instant-care", icon: AlertTriangle, label: "Instant Care" },
     { path: "/shecare", icon: HeartPulse, label: "SheCare" },

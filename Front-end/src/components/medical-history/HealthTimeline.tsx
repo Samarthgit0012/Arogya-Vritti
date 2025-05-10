@@ -8,7 +8,8 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Filler
 } from 'chart.js';
 
 ChartJS.register(
@@ -18,7 +19,8 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Filler
 );
 
 interface HealthTimelineProps {
@@ -41,31 +43,41 @@ const HealthTimeline: React.FC<HealthTimelineProps> = ({
   unit,
   normalRange
 }) => {
+  // Sort data by date
+  const sortedData = [...data].sort((a, b) => 
+    new Date(a.date).getTime() - new Date(b.date).getTime()
+  );
+
   const chartData = {
-    labels: data.map(item => item.date),
+    labels: sortedData.map(item => item.date),
     datasets: [
       {
         label: `${metricType} (${unit})`,
-        data: data.map(item => item.value),
+        data: sortedData.map(item => item.value),
         borderColor: 'rgb(79, 70, 229)',
-        backgroundColor: 'rgba(79, 70, 229, 0.5)',
+        backgroundColor: 'rgba(79, 70, 229, 0.1)',
         tension: 0.4,
+        fill: true,
+        pointRadius: 4,
+        pointHoverRadius: 6,
       },
       {
-        label: 'Normal Range',
-        data: data.map(() => normalRange.max),
-        borderColor: 'rgba(34, 197, 94, 0.5)',
-        backgroundColor: 'rgba(34, 197, 94, 0.1)',
-        borderDash: [5, 5],
-        fill: '+1',
-      },
-      {
-        label: 'Normal Range',
-        data: data.map(() => normalRange.min),
+        label: 'Upper Normal Range',
+        data: sortedData.map(() => normalRange.max),
         borderColor: 'rgba(34, 197, 94, 0.5)',
         backgroundColor: 'rgba(34, 197, 94, 0.1)',
         borderDash: [5, 5],
         fill: false,
+        pointRadius: 0,
+      },
+      {
+        label: 'Lower Normal Range',
+        data: sortedData.map(() => normalRange.min),
+        borderColor: 'rgba(34, 197, 94, 0.5)',
+        backgroundColor: 'rgba(34, 197, 94, 0.1)',
+        borderDash: [5, 5],
+        fill: false,
+        pointRadius: 0,
       },
     ],
   };
@@ -80,7 +92,20 @@ const HealthTimeline: React.FC<HealthTimelineProps> = ({
       title: {
         display: true,
         text: `${metricType} Over Time`,
+        font: {
+          size: 16,
+          weight: 'bold' as const,
+        },
       },
+      tooltip: {
+        callbacks: {
+          label: function(context: any) {
+            const label = context.dataset.label || '';
+            const value = context.parsed.y;
+            return `${label}: ${value} ${unit}`;
+          }
+        }
+      }
     },
     scales: {
       y: {
@@ -88,18 +113,37 @@ const HealthTimeline: React.FC<HealthTimelineProps> = ({
         grid: {
           color: 'rgba(0, 0, 0, 0.1)',
         },
+        ticks: {
+          callback: function(value: any) {
+            return `${value} ${unit}`;
+          }
+        }
       },
       x: {
         grid: {
           display: false,
         },
+        ticks: {
+          maxRotation: 45,
+          minRotation: 45
+        }
       },
+    },
+    interaction: {
+      intersect: false,
+      mode: 'index' as const,
     },
   };
 
   return (
     <div className="w-full h-full">
-      <Line data={chartData} options={options} />
+      {data.length > 0 ? (
+        <Line data={chartData} options={options} />
+      ) : (
+        <div className="flex items-center justify-center h-full">
+          <p className="text-gray-500">No data available. Add your first reading!</p>
+        </div>
+      )}
     </div>
   );
 };

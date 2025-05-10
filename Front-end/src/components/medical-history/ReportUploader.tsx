@@ -1,123 +1,165 @@
-import React, { useState } from 'react';
-import { DocumentTextIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import React, { useState, useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Upload, FileText, Image, X } from 'lucide-react';
+import { toast } from 'react-hot-toast';
+import api from '@/lib/axios';
 
 interface ReportUploaderProps {
   onUpload: (file: File) => void;
 }
 
 const ReportUploader: React.FC<ReportUploaderProps> = ({ onUpload }) => {
-  const [dragActive, setDragActive] = useState(false);
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [file, setFile] = useState<File | null>(null);
+  const [description, setDescription] = useState('');
+  const [reportType, setReportType] = useState('other');
+  const [uploading, setUploading] = useState(false);
 
-  const handleDrag = (e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.type === "dragenter" || e.type === "dragover") {
-      setDragActive(true);
-    } else if (e.type === "dragleave") {
-      setDragActive(false);
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    const selectedFile = acceptedFiles[0];
+    if (selectedFile) {
+      // Check file size (5MB limit)
+      if (selectedFile.size > 5 * 1024 * 1024) {
+        toast.error('File size must be less than 5MB');
+        return;
+      }
+      setFile(selectedFile);
     }
-  };
+  }, []);
 
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
-    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      addFiles(Array.from(e.dataTransfer.files));
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    if (e.target.files && e.target.files.length > 0) {
-      addFiles(Array.from(e.target.files));
-    }
-  };
-
-  const addFiles = (files: File[]) => {
-    // Avoid duplicates by name and size
-    setSelectedFiles((prev) => {
-      const existing = new Set(prev.map(f => f.name + f.size));
-      return [...prev, ...files.filter(f => !existing.has(f.name + f.size))];
-    });
-  };
-
-  const removeFile = (index: number) => {
-    setSelectedFiles((prev) => prev.filter((_, i) => i !== index));
-  };
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: {
+      'image/*': ['.png', '.jpg', '.jpeg'],
+      'application/pdf': ['.pdf']
+    },
+    maxFiles: 1
+  });
 
   const handleUpload = async () => {
-    for (const file of selectedFiles) {
-      await onUpload(file);
+    if (!file) {
+      toast.error('Please select a file to upload');
+      return;
     }
-    setSelectedFiles([]);
+
+    setUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append('report', file);
+      formData.append('description', description);
+      formData.append('reportType', reportType);
+
+      const response = await api.post('/api/medical/reports/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      toast.success('Report uploaded successfully');
+      onUpload(file);
+      // Reset form
+      setFile(null);
+      setDescription('');
+      setReportType('other');
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      toast.error('Failed to upload report');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const removeFile = () => {
+    setFile(null);
   };
 
   return (
-    <div className="w-full">
-      <div
-        className={`
-          relative border-2 border-dashed rounded-lg p-6
-          ${dragActive ? 'border-indigo-500 bg-indigo-50' : 'border-gray-300'}
-          transition-colors duration-200 ease-in-out
-        `}
-        onDragEnter={handleDrag}
-        onDragLeave={handleDrag}
-        onDragOver={handleDrag}
-        onDrop={handleDrop}
-      >
-        <input
-          type="file"
-          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-          onChange={handleChange}
-          accept=".pdf,.jpg,.jpeg,.png"
-          multiple
-        />
-        {selectedFiles.length === 0 ? (
-          <div className="text-center">
-            <DocumentTextIcon className="mx-auto h-12 w-12 text-gray-400" />
-            <div className="mt-4">
-              <p className="text-sm text-gray-600">
-                Drag and drop your medical reports here, or click to select
-              </p>
-              <p className="mt-1 text-xs text-gray-500">
-                Supports PDF, JPG, JPEG, PNG. You can select multiple files.
-              </p>
-            </div>
-          </div>
-        ) : (
-          <div className="space-y-2">
-            {selectedFiles.map((file, idx) => (
-              <div key={file.name + file.size} className="flex items-center justify-between p-2 border rounded-lg mb-1">
-                <div className="flex items-center">
-                  <DocumentTextIcon className="h-6 w-6 text-indigo-500" />
-                  <span className="ml-2 text-sm text-gray-900">{file.name}</span>
-                </div>
+    <Card>
+      <CardContent className="p-6">
+        <div className="space-y-6">
+          {/* File Drop Zone */}
+          <div
+            {...getRootProps()}
+            className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors
+              ${isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-gray-400'}`}
+          >
+            <input {...getInputProps()} />
+            {file ? (
+              <div className="flex items-center justify-center space-x-2">
+                {file.type.startsWith('image/') ? (
+                  <Image className="h-8 w-8 text-blue-500" />
+                ) : (
+                  <FileText className="h-8 w-8 text-blue-500" />
+                )}
+                <span className="text-sm text-gray-600">{file.name}</span>
                 <button
-                  type="button"
-                  onClick={() => removeFile(idx)}
-                  className="text-gray-400 hover:text-gray-500"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    removeFile();
+                  }}
+                  className="p-1 hover:bg-gray-100 rounded-full"
                 >
-                  <XMarkIcon className="h-5 w-5" />
+                  <X className="h-4 w-4 text-gray-500" />
                 </button>
               </div>
-            ))}
+            ) : (
+              <div className="space-y-2">
+                <Upload className="h-8 w-8 text-gray-400 mx-auto" />
+                <p className="text-sm text-gray-600">
+                  Drag and drop a file here, or click to select
+                </p>
+                <p className="text-xs text-gray-500">
+                  Supported formats: PDF, PNG, JPG (max 5MB)
+                </p>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-      {selectedFiles.length > 0 && (
-        <div className="flex justify-end mt-4">
-          <button
-            type="button"
+
+          {/* Report Type Selection */}
+          <div className="space-y-2">
+            <Label htmlFor="reportType">Report Type</Label>
+            <Select
+              value={reportType}
+              onValueChange={setReportType}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select report type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="lab">Lab Report</SelectItem>
+                <SelectItem value="imaging">Imaging Report</SelectItem>
+                <SelectItem value="prescription">Prescription</SelectItem>
+                <SelectItem value="other">Other</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Description */}
+          <div className="space-y-2">
+            <Label htmlFor="description">Description</Label>
+            <Input
+              id="description"
+              placeholder="Enter a description for this report..."
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+
+          {/* Upload Button */}
+          <Button
             onClick={handleUpload}
-            className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
+            disabled={!file || uploading}
+            className="w-full"
           >
-            Upload {selectedFiles.length} file{selectedFiles.length > 1 ? 's' : ''}
-          </button>
+            {uploading ? 'Uploading...' : 'Upload Report'}
+          </Button>
         </div>
-      )}
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 

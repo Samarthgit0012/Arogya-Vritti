@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import ReportUploader from './ReportUploader';
 import api from '@/lib/axios';
-import { DocumentTextIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { FileText, Trash2, Download } from 'lucide-react';
 import { toast } from 'react-hot-toast';
+import { Button } from '@/components/ui/button';
 
 interface MedicalReport {
   _id: string;
@@ -39,25 +40,7 @@ const MedicalReports = () => {
   }, []);
 
   const handleUpload = async (file: File) => {
-    try {
-      const formData = new FormData();
-      formData.append('report', file);
-      formData.append('description', 'Medical report');
-      formData.append('reportType', 'other');
-
-      await api.post('/api/medical/reports/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
-      toast.success('Report uploaded successfully');
-      fetchReports(); // Refresh the reports list
-    } catch (err) {
-      console.error('Error uploading report:', err);
-      setError('Failed to upload report');
-      toast.error('Failed to upload report');
-    }
+    await fetchReports(); // Refresh the reports list after upload
   };
 
   const handleDelete = async (reportId: string) => {
@@ -69,6 +52,41 @@ const MedicalReports = () => {
       console.error('Error deleting report:', err);
       setError('Failed to delete report');
       toast.error('Failed to delete report');
+    }
+  };
+
+  const handleDownload = async (report: MedicalReport) => {
+    try {
+      // Get the full URL by combining the base URL with the file path
+      const fileUrl = `${import.meta.env.VITE_API_URL}${report.fileUrl}`;
+      
+      // Fetch the file
+      const response = await fetch(fileUrl);
+      if (!response.ok) throw new Error('Failed to download file');
+      
+      // Get the blob from the response
+      const blob = await response.blob();
+      
+      // Create a URL for the blob
+      const url = window.URL.createObjectURL(blob);
+      
+      // Create a temporary link element
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = report.fileName; // Use the original filename
+      
+      // Append to body, click, and remove
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Clean up the URL
+      window.URL.revokeObjectURL(url);
+      
+      toast.success('File downloaded successfully');
+    } catch (err) {
+      console.error('Error downloading report:', err);
+      toast.error('Failed to download file');
     }
   };
 
@@ -102,29 +120,34 @@ const MedicalReports = () => {
                   className="flex items-center justify-between p-4 border rounded-lg"
                 >
                   <div className="flex items-center space-x-4">
-                    <DocumentTextIcon className="h-8 w-8 text-indigo-500" />
+                    <FileText className="h-8 w-8 text-blue-500" />
                     <div>
                       <p className="font-medium">{report.fileName}</p>
                       <p className="text-sm text-gray-500">
                         Uploaded on {new Date(report.uploadDate).toLocaleDateString()}
                       </p>
+                      {report.description && (
+                        <p className="text-sm text-gray-600 mt-1">{report.description}</p>
+                      )}
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <a
-                      href={report.fileUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-indigo-600 hover:text-indigo-800"
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleDownload(report)}
                     >
-                      View
-                    </a>
-                    <button
+                      <Download className="h-4 w-4 mr-2" />
+                      Download
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       onClick={() => handleDelete(report._id)}
                       className="text-red-600 hover:text-red-800"
                     >
-                      <TrashIcon className="h-5 w-5" />
-                    </button>
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
                   </div>
                 </div>
               ))}
