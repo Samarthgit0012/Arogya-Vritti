@@ -84,7 +84,7 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              <Link to="/manage-appointments">
+              <Link to="/appointments">
                 <Button variant="link" className="mt-4 p-0 h-auto">
                   Manage appointments
                 </Button>

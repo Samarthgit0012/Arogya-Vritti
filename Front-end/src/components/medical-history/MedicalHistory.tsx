@@ -1,13 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import api from '@/lib/axios';
+import { toast } from 'react-hot-toast';
+
+interface MedicalRecord {
+  bloodType: string;
+  allergies: string;
+  chronicConditions: string;
+  medications: string;
+  familyHistory: string;
+  surgeries: string;
+  lifestyle: {
+    smoking: string;
+    alcohol: string;
+    exercise: string;
+    diet: string;
+  };
+}
 
 const MedicalHistory = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<MedicalRecord>({
     bloodType: '',
     allergies: '',
     chronicConditions: '',
@@ -21,12 +38,45 @@ const MedicalHistory = () => {
       diet: ''
     }
   });
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Implement save logic
-    console.log('Medical history saved:', formData);
+  useEffect(() => {
+    fetchMedicalRecord();
+  }, []);
+
+  const fetchMedicalRecord = async () => {
+    try {
+      const response = await api.get('/api/medical/records');
+      if (response.data) {
+        setFormData(response.data);
+      }
+    } catch (error) {
+      console.error('Error fetching medical record:', error);
+      toast.error('Failed to load medical record');
+    } finally {
+      setLoading(false);
+    }
   };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
+
+    try {
+      await api.post('/api/medical/records', formData);
+      toast.success('Medical history saved successfully');
+    } catch (error) {
+      console.error('Error saving medical record:', error);
+      toast.error('Failed to save medical record');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (loading) {
+    return <div className="text-center py-8">Loading medical history...</div>;
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -178,10 +228,10 @@ const MedicalHistory = () => {
                     <SelectValue placeholder="Select exercise habits" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="none">No Exercise</SelectItem>
+                    <SelectItem value="sedentary">Sedentary</SelectItem>
                     <SelectItem value="light">Light (1-2 times/week)</SelectItem>
                     <SelectItem value="moderate">Moderate (3-4 times/week)</SelectItem>
-                    <SelectItem value="heavy">Heavy (5+ times/week)</SelectItem>
+                    <SelectItem value="active">Active (5+ times/week)</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -199,10 +249,11 @@ const MedicalHistory = () => {
                     <SelectValue placeholder="Select diet type" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="omnivore">Omnivore</SelectItem>
+                    <SelectItem value="regular">Regular</SelectItem>
                     <SelectItem value="vegetarian">Vegetarian</SelectItem>
                     <SelectItem value="vegan">Vegan</SelectItem>
                     <SelectItem value="keto">Keto</SelectItem>
+                    <SelectItem value="paleo">Paleo</SelectItem>
                     <SelectItem value="other">Other</SelectItem>
                   </SelectContent>
                 </Select>
@@ -213,7 +264,9 @@ const MedicalHistory = () => {
       </Card>
 
       <div className="flex justify-end">
-        <Button type="submit">Save Medical History</Button>
+        <Button type="submit" disabled={saving}>
+          {saving ? 'Saving...' : 'Save Medical History'}
+        </Button>
       </div>
     </form>
   );

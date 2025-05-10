@@ -7,8 +7,7 @@ interface ReportUploaderProps {
 
 const ReportUploader: React.FC<ReportUploaderProps> = ({ onUpload }) => {
   const [dragActive, setDragActive] = useState(false);
-  const [preview, setPreview] = useState<string | null>(null);
-  const [fileName, setFileName] = useState<string | null>(null);
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
@@ -24,38 +23,35 @@ const ReportUploader: React.FC<ReportUploaderProps> = ({ onUpload }) => {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
-    
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      handleFile(e.dataTransfer.files[0]);
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      addFiles(Array.from(e.dataTransfer.files));
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    if (e.target.files && e.target.files[0]) {
-      handleFile(e.target.files[0]);
+    if (e.target.files && e.target.files.length > 0) {
+      addFiles(Array.from(e.target.files));
     }
   };
 
-  const handleFile = (file: File) => {
-    setFileName(file.name);
-    onUpload(file);
-
-    // Create preview for images
-    if (file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setPreview(e.target?.result as string);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      setPreview(null);
-    }
+  const addFiles = (files: File[]) => {
+    // Avoid duplicates by name and size
+    setSelectedFiles((prev) => {
+      const existing = new Set(prev.map(f => f.name + f.size));
+      return [...prev, ...files.filter(f => !existing.has(f.name + f.size))];
+    });
   };
 
-  const removeFile = () => {
-    setFileName(null);
-    setPreview(null);
+  const removeFile = (index: number) => {
+    setSelectedFiles((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleUpload = async () => {
+    for (const file of selectedFiles) {
+      await onUpload(file);
+    }
+    setSelectedFiles([]);
   };
 
   return (
@@ -76,52 +72,49 @@ const ReportUploader: React.FC<ReportUploaderProps> = ({ onUpload }) => {
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
           onChange={handleChange}
           accept=".pdf,.jpg,.jpeg,.png"
+          multiple
         />
-        
-        {!fileName ? (
+        {selectedFiles.length === 0 ? (
           <div className="text-center">
             <DocumentTextIcon className="mx-auto h-12 w-12 text-gray-400" />
             <div className="mt-4">
               <p className="text-sm text-gray-600">
-                Drag and drop your medical report here, or click to select
+                Drag and drop your medical reports here, or click to select
               </p>
               <p className="mt-1 text-xs text-gray-500">
-                Supports PDF, JPG, JPEG, PNG
+                Supports PDF, JPG, JPEG, PNG. You can select multiple files.
               </p>
             </div>
           </div>
         ) : (
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <DocumentTextIcon className="h-8 w-8 text-indigo-500" />
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-900">{fileName}</p>
-                <p className="text-xs text-gray-500">
-                  {preview ? 'Image preview available' : 'Processing...'}
-                </p>
+          <div className="space-y-2">
+            {selectedFiles.map((file, idx) => (
+              <div key={file.name + file.size} className="flex items-center justify-between p-2 border rounded-lg mb-1">
+                <div className="flex items-center">
+                  <DocumentTextIcon className="h-6 w-6 text-indigo-500" />
+                  <span className="ml-2 text-sm text-gray-900">{file.name}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => removeFile(idx)}
+                  className="text-gray-400 hover:text-gray-500"
+                >
+                  <XMarkIcon className="h-5 w-5" />
+                </button>
               </div>
-            </div>
-            <button
-              type="button"
-              onClick={removeFile}
-              className="text-gray-400 hover:text-gray-500"
-            >
-              <XMarkIcon className="h-5 w-5" />
-            </button>
+            ))}
           </div>
         )}
       </div>
-
-      {preview && (
-        <div className="mt-4">
-          <h4 className="text-sm font-medium text-gray-700 mb-2">Preview</h4>
-          <div className="border rounded-lg overflow-hidden">
-            <img
-              src={preview}
-              alt="Report preview"
-              className="w-full h-auto"
-            />
-          </div>
+      {selectedFiles.length > 0 && (
+        <div className="flex justify-end mt-4">
+          <button
+            type="button"
+            onClick={handleUpload}
+            className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
+          >
+            Upload {selectedFiles.length} file{selectedFiles.length > 1 ? 's' : ''}
+          </button>
         </div>
       )}
     </div>

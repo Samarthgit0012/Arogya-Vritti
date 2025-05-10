@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Calendar, MessageSquare, FileText, AlertTriangle, User, Home, LogOut, Menu, ChevronLeft, Stethoscope } from "lucide-react";
+import { Calendar, MessageSquare, FileText, AlertTriangle, User, Home, LogOut, Menu, ChevronLeft, Stethoscope, Baby, MapPin, HeartPulse, BarChart3 } from "lucide-react";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -23,11 +23,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   const navItems = [
     { path: "/dashboard", icon: Home, label: "Dashboard" },
+    { path: "/health-dashboard", icon: BarChart3, label: "Health Metrics" },
     { path: "/appointments", icon: Calendar, label: "Appointments" },
     { path: "/assistant", icon: MessageSquare, label: "AI Assistant" },
     { path: "/records", icon: FileText, label: "Medical Records" },
     { path: "/symptom-checker", icon: Stethoscope, label: "Symptom Checker" },
     { path: "/instant-care", icon: AlertTriangle, label: "Instant Care" },
+    { path: "/shecare", icon: HeartPulse, label: "SheCare" },
   ];
 
   return (
@@ -59,7 +61,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   to={item.path}
                   className={`flex items-center space-x-3 p-3 rounded-lg transition-colors ${
                     isActive
-                      ? "bg-blue-50 text-blue-700"
+                      ? item.label === "SheCare"
+                        ? "bg-pink-50 text-pink-700"
+                        : "bg-blue-50 text-blue-700"
+                      : item.label === "SheCare"
+                      ? "hover:bg-pink-50 text-gray-700"
                       : "hover:bg-gray-50 text-gray-700"
                   }`}
                 >

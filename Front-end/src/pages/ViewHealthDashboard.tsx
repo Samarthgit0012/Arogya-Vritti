@@ -85,7 +85,7 @@ const ViewHealthDashboard = () => {
         {/* Tab Content */}
         <div className="mt-8">
           {activeTab === 'metrics' && (
-            <div className="bg-white shadow rounded-lg p-6">
+            <div className="bg-white shadow rounded-lg p-6 w-full max-w-full overflow-x-auto">
               <HealthMetricsTimeline />
             </div>
           )}

@@ -27,7 +27,9 @@ const AppointmentList: React.FC<AppointmentListProps> = ({
   };
 
   const handleJoinCall = (id: string) => {
-    console.log("Join call clicked for appointment:", id); // Debug log
+    // Open Jitsi Meet in a new tab with a unique room name based on appointment id
+    const roomName = `ArogyaVrittiMeet_${id}`;
+    window.open(`https://meet.jit.si/${roomName}`, "_blank");
     onJoinCall(id);
   };
 
