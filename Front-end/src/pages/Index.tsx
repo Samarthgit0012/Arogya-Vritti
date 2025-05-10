@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -10,7 +9,7 @@ const Index = () => {
       <nav className="bg-white shadow-sm py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <div className="flex items-center">
-            <h1 className="text-xl font-bold text-blue-700">Care Anywhere Now</h1>
+            <h1 className="text-xl font-bold text-blue-700">Arogya-Vritti</h1>
           </div>
           <div className="flex items-center gap-4">
             <Link to="/auth">
@@ -65,7 +64,7 @@ const Index = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900">What is Care Anywhere Now?</h2>
+            <h2 className="text-3xl font-bold text-gray-900">What is Arogya-Vritti?</h2>
             <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
               A comprehensive telehealth platform designed to provide accessible healthcare 
               services to everyone, anywhere. We connect patients with healthcare professionals 
@@ -142,7 +141,7 @@ const Index = () => {
               <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
             </svg>
             <p className="text-lg text-gray-700 mb-6">
-              "Care Anywhere Now has been a lifesaver for me. As someone with chronic conditions who lives in a rural area, 
+              "Arogya-Vritti has been a lifesaver for me. As someone with chronic conditions who lives in a rural area, 
               having access to specialists without driving for hours has made managing my health so much easier."
             </p>
             <div className="flex items-center">
@@ -163,7 +162,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">Care Anywhere Now</h3>
+              <h3 className="text-xl font-bold mb-4">Arogya-Vritti</h3>
               <p className="text-blue-200">
                 Access to quality healthcare from anywhere, anytime.
               </p>
@@ -214,7 +213,7 @@ const Index = () => {
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-blue-800 text-center text-blue-300 text-sm">
-            <p>© 2025 Care Anywhere Now. All rights reserved.</p>
+            <p>© 2025 Arogya-Vritti. All rights reserved.</p>
           </div>
         </div>
       </footer>

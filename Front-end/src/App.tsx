@@ -23,6 +23,7 @@ import SymptomChecker from "@/pages/SymptomChecker";
 import BookAppointment from "@/components/BookAppointment";
 import SheCare from './pages/SheCare';
 import { Toaster as HotToaster } from 'react-hot-toast';
+import Emergency from "./components/Emergency";
 // import PregnancyProgress from '@/components/PregnancyProgress';
 // import Emergency from '@/components/Emergency';
 
@@ -60,6 +61,7 @@ const App = () => (
           <Route path="/health-dashboard" element={<ProtectedRoute><ViewHealthDashboard /></ProtectedRoute>} />
           <Route path="/symptom-checker" element={<ProtectedRoute><SymptomChecker /></ProtectedRoute>} />
           <Route path="/records" element={<Navigate to="/medical-records" replace />} />
+          <Route path="/emergency" element={<ProtectedRoute><Emergency /></ProtectedRoute>} />
           
           <Route path="*" element={<NotFound />} />
         </Routes>

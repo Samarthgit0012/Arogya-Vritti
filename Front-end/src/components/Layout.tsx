@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Calendar, MessageSquare, FileText, AlertTriangle, User, Home, LogOut, Menu, ChevronLeft, Stethoscope, Baby, MapPin, HeartPulse, BarChart3 } from "lucide-react";
+import { Calendar, MessageSquare, FileText, AlertTriangle, User, Home, LogOut, Menu, ChevronLeft, Stethoscope, Baby, MapPin, HeartPulse, BarChart3, Hospital } from "lucide-react";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -30,6 +30,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     { path: "/symptom-checker", icon: Stethoscope, label: "Symptom Checker" },
     { path: "/instant-care", icon: AlertTriangle, label: "Instant Care" },
     { path: "/shecare", icon: HeartPulse, label: "SheCare" },
+    { path: "/emergency", icon: Hospital, label: "Nearby Hospitals" },
   ];
 
   return (
@@ -49,7 +50,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           className="fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 z-40"
         >
           <div className="p-4 border-b">
-            <h1 className="text-xl font-bold text-blue-700">Care Anywhere Now</h1>
+            <h1 className="text-xl font-bold text-blue-700">Arogya-Vritti</h1>
           </div>
           <nav className="p-4 space-y-2">
             {navItems.map((item) => {

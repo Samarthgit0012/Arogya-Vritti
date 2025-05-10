@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Phone, MessageSquare, AlertTriangle, Heart, Clock, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import HealthChatbot from "./HealthChatbot";
-import Emergency from "./Emergency";
 
 interface InstantCareProps {
   onStartConsultation: () => void;
@@ -146,7 +145,7 @@ const InstantCare: React.FC<InstantCareProps> = ({ onStartConsultation }) => {
         </div>
 
         <div className="mt-8">
-          <Emergency />
+          {/* Emergency component removed for standalone use */}
         </div>
       </div>
     </div>
