@@ -14,7 +14,10 @@ const SymptomChecker = () => {
             <ArrowLeft size={20} />
             <span className="ml-1">Back to Dashboard</span>
           </Link>
-          <h1 className="text-2xl font-bold text-blue-700">Symptom Checker</h1>
+          <h1 className="text-2xl font-bold text-blue-700">
+            🩺 Symptom Checker
+          </h1>
+
         </div>
       </header>
       
