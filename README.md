@@ -1,60 +1,60 @@
 # Arogya-Vritti - Telehealth Platform
 
-# A comprehensive telehealth platform designed to provide accessible healthcare services to everyone, anywhere. We connect patients with healthcare professionals through secure video consultations, AI-powered assistance, and real-time health monitoring.
+A comprehensive telehealth platform designed to provide accessible healthcare services to everyone, anywhere. We connect patients with healthcare professionals through secure video consultations, AI-powered assistance, and real-time health monitoring.
 
 # 🌟 Features
 
-# - Book Appointments: Schedule virtual consultations with healthcare specialists  
-# - Emergency Services: Access nearby hospitals and urgent medical care  
-# - AI Health Assistant: Get quick answers to common health questions  
-# - Personalised Dashboard: Track health insights and appointments  
-# - Secure Video Consultations: Face-to-face consultations from home  
-# - Real-time Health Monitoring: Track vital signs and health metrics  
-# - Payment Integration: Secure payment processing with Razorpay  
+- Book Appointments: Schedule virtual consultations with healthcare specialists  
+- Emergency Services: Access nearby hospitals and urgent medical care  
+- AI Health Assistant: Get quick answers to common health questions  
+- Personalised Dashboard: Track health insights and appointments  
+- Secure Video Consultations: Face-to-face consultations from home  
+- Real-time Health Monitoring: Track vital signs and health metrics  
+- Payment Integration: Secure payment processing with Razorpay  
 
 # 🚀 Tech Stack
 
-# Frontend
-# - React 18  
-# - TypeScript  
-# - Vite  
-# - Tailwind CSS  
-# - Shadcn UI Components  
-# - React Router DOM  
-# - React Query  
-# - Chart.js & Recharts  
-# - React Leaflet (Maps)  
-# - Google AI Integration  
+Frontend
+- React 18  
+- TypeScript  
+- Vite  
+- Tailwind CSS  
+- Shadcn UI Components  
+- React Router DOM  
+- React Query  
+- Chart.js & Recharts  
+- React Leaflet (Maps)  
+- Google AI Integration  
 
 # Backend
-# - Node.js  
-# - Express.js  
-# - MongoDB  
-# - JWT Authentication  
-# - Razorpay Integration  
-# - Multer (File Upload)  
-# - CORS enabled  
+- Node.js  
+- Express.js  
+- MongoDB  
+- JWT Authentication  
+- Razorpay Integration  
+- Multer (File Upload)  
+- CORS enabled  
 
 # 📦 Installation
 
 # Prerequisites
-# - Node.js (v16 or higher)  
-# - MongoDB  
-# - npm or yarn  
+- Node.js (v16 or higher)  
+- MongoDB  
+- npm or yarn  
 
 # Frontend Setup
-# ```bash
-# cd Front-end
-# npm install
-# npm run dev
-# ```
+ ```bash
+cd Front-end
+npm install
+npm run dev
+```
 
 # Backend Setup
-# ```bash
-# cd Back-end
-# npm install
-# npm run dev
-# ```
+```bash
+cd Back-end
+npm install
+npm run dev
+```
 
 # 🔧 Environment Variables
 
