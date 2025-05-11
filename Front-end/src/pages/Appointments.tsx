@@ -69,7 +69,10 @@ const Appointments = () => {
             </div>
           </div>
         )}
-        <h2 className="text-xl font-semibold mb-4">All Appointments</h2>
+          <h2 className="text-xl font-semibold mb-4">
+          📋 All Appointments
+        </h2>
+
         <AppointmentList
           appointments={mappedAppointments}
           onReschedule={handleReschedule}
