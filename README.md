@@ -2,7 +2,8 @@
 
 A comprehensive telehealth platform designed to provide accessible healthcare services to everyone, anywhere. We connect patients with healthcare professionals through secure video consultations, AI-powered assistance, and real-time health monitoring.
 
-[Figma Link](https://www.figma.com/design/UtV2n14SM6rDQJQT2haHbE/ArogyaVritti-Veersa?node-id=3-584&t=Vy9Z9okfQr54CXkn-1)
+### Figma Link -> [Click here](https://www.figma.com/design/UtV2n14SM6rDQJQT2haHbE/ArogyaVritti-Veersa?node-id=3-584&t=Vy9Z9okfQr54CXkn-1)
+### Video Presentation -> [Click here](https://drive.google.com/file/d/10S7WjK8EynDfwDocQFJOsdJD8XW_MG9a/view?usp=sharing)
 
 # 🌟 Features
 
