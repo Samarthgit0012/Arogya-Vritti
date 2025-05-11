@@ -1,10 +1,14 @@
 // src/services/api.ts
 import axios from 'axios';
-const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
-// const API_URL = '';
+import { currentBackendUrl, initializeBackendUrl } from '../lib/backendUrls';
+
+// Initialize the backend URL
+initializeBackendUrl().then(url => {
+  console.log('Using backend URL:', url);
+});
 
 const api = axios.create({
-  baseURL: `${BACKEND_URL}/api`,
+  baseURL: `${currentBackendUrl}/api`,
   headers: {
     'Content-Type': 'application/json'
   }
@@ -32,3 +36,4 @@ export const authAPI = {
     password: string;
   }) => api.post('/auth/login', credentials)
 };
+// ... existing code ...
