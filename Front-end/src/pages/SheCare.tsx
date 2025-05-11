@@ -70,8 +70,9 @@ const SheCare: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-10 space-y-10 bg-pink-50 min-h-screen">
       <h1 className="text-3xl font-bold text-center text-pink-600">
-        SheCare - Women's Health Tracker
+        💗🌸 SheCare – Women's Health Tracker 🌸💗
       </h1>
+
 
       {/* 🔍 PCOD Symptoms Chart */}
       <div className="w-full h-96 mb-16">
