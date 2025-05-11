@@ -47,7 +47,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Sidebar - only render when open */}
       {isSidebarOpen && (
         <aside
-          className="fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 z-40"
+          className="fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 z-50"
         >
           <div className="p-4 border-b">
             <h1 className="text-xl font-bold text-blue-700">Arogya-Vritti</h1>
