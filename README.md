@@ -14,7 +14,7 @@ A comprehensive telehealth platform designed to provide accessible healthcare se
 
 # 🚀 Tech Stack
 
-Frontend
+##Frontend
 - React 18  
 - TypeScript  
 - Vite  
