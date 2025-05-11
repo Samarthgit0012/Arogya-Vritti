@@ -1,0 +1,10 @@
+Use case 2:-  Telehealth Solution for access to Healthcare from anywhere.
+Github Repository of our project (Arogya-Vritti) :- https://github.com/Samarthgit0012/Arogya-Vritti
+Live Deployed link :- https://www.arogya-vritti.life/
+Figma link :- https://www.figma.com/design/UtV2n14SM6rDQJQT2haHbE/ArogyaVritti-Veersa?node-id=3-584&t=WtBU4qHKuegik8P7-0
+Video presentation :- https://drive.google.com/file/d/10S7WjK8EynDfwDocQFJOsdJD8XW_MG9a/view?usp=sharing
+
+Team:- Samarth Srivastava (Leader) - samarthdec12@gmail.com
+            Supriya Pandey - supriyapade11@gmail.com
+            Tryambakesh Satish - trishu.tripu@gmail.com
+            Rudra Tiwari - rt1766285@gmail.com 
