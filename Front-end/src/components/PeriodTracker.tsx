@@ -161,7 +161,7 @@ const PeriodTracker = () => {
           
           <div className="space-y-4">
             <h3 className="font-medium text-sm">Mark Period Days</h3>
-            <p className="text-sm text-gray-500">Click on days to mark/unmark your period</p>
+            <p className="text-sm text-gray-400">Click on days to mark/unmark your period</p>
             
             <Calendar
               mode="single"

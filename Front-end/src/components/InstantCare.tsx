@@ -106,7 +106,7 @@ const InstantCare: React.FC<InstantCareProps> = ({ onStartConsultation }) => {
                 <div className="flex-1">
                   <div className="flex justify-between items-start">
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900">{option.title}</h3>
+                      <h3 className="text-xl font-semibold text-gray-800">{option.title}</h3>
                       <p className="text-gray-600 mt-1">{option.description}</p>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-500">
