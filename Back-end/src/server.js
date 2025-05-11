@@ -16,10 +16,32 @@ const app = express();
 // app.use(cors());
 
 
+// app.use(cors({
+//   origin: 'https://arogya-vritti-front-end.onrender.com',
+//   credentials: true
+// }));
+
+
+
+const allowedOrigins = [
+  'https://arogya-vritti-front-end.onrender.com',
+  'https://arogya-vritti.life',
+  'https://www.arogya-vritti.life'
+];
+
 app.use(cors({
-  origin: 'https://arogya-vritti-front-end.onrender.com',
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
+
+
+
 
 app.use(express.json());
 
