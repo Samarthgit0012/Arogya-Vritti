@@ -59,98 +59,92 @@ npm run dev
 # 🔧 Environment Variables
 
 # Frontend (.env)
-# VITE_BACKEND_URL=http://localhost:8080
+VITE_BACKEND_URL=http://localhost:8080
 
 # Backend (.env)
-# MONGODB_URI=your_mongodb_uri  
-# JWT_SECRET=your_jwt_secret  
-# RAZORPAY_KEY_ID=your_razorpay_key  
-# RAZORPAY_KEY_SECRET=your_razorpay_secret  
+MONGODB_URI=your_mongodb_uri  
+JWT_SECRET=your_jwt_secret  
+RAZORPAY_KEY_ID=your_razorpay_key  
+RAZORPAY_KEY_SECRET=your_razorpay_secret  
 
 # 🗂️ Project Structure
 
-# Arogya-Vritti/
-# ├── Front-end/
-# │   ├── src/
-# │   │   ├── components/
-# │   │   ├── pages/
-# │   │   ├── services/
-# │   │   ├── contexts/
-# │   │   ├── hooks/
-# │   │   └── lib/
-# │   ├── public/
-# │   └── assets/
-# └── Back-end/
-#     ├── src/
-#     │   ├── controllers/
-#     │   ├── models/
-#     │   ├── routes/
-#     │   ├── services/
-#     │   └── utils/
-#     └── uploads/
+Arogya-Vritti/
+├── Front-end/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── contexts/
+│   │   ├── hooks/
+│   │   └── lib/
+│   ├── public/
+│   └── assets/
+└── Back-end/
+    ├── src/
+    │   ├── controllers/
+    │   ├── models/
+    │   ├── routes/
+    │   ├── services/
+    │   └── utils/
+    └── uploads/
 
 # 👥 Creators
 
-# - Tryambakesh Satish (https://www.linkedin.com/in/tryambakeshsatish/)  
-# - Samarth Srivastava (https://www.linkedin.com/in/samarthsrivastava00/)  
-# - Rudra Tiwari (https://www.linkedin.com/in/rudra-tiwari1306/)  
-# - Supriya Pandey (https://www.linkedin.com/in/supriya-pandey22/)  
+- Tryambakesh Satish (https://www.linkedin.com/in/tryambakeshsatish/)  
+- Samarth Srivastava (https://www.linkedin.com/in/samarthsrivastava00/)  
+- Rudra Tiwari (https://www.linkedin.com/in/rudra-tiwari1306/)  
+- Supriya Pandey (https://www.linkedin.com/in/supriya-pandey22/)  
 
 # 🔐 Security Features
 
-# - JWT Authentication  
-# - Secure Password Hashing  
-# - CORS Protection  
-# - Environment Variables  
-# - Input Validation  
-# - Secure File Upload  
+- JWT Authentication  
+- Secure Password Hashing  
+- CORS Protection  
+- Environment Variables  
+- Input Validation  
+- Secure File Upload  
 
 # 📱 API Endpoints
 
 # Authentication
-# - POST /api/auth/register  
-# - POST /api/auth/login  
+- POST /api/auth/register  
+- POST /api/auth/login  
 
 # Appointments
-# - GET /api/appointments  
-# - POST /api/appointments  
-# - PUT /api/appointments/:id  
+- GET /api/appointments  
+- POST /api/appointments  
+- PUT /api/appointments/:id  
 
 # Medical Records
-# - GET /api/medical-records  
-# - POST /api/medical-records  
-# - PUT /api/medical-records/:id  
+- GET /api/medical-records  
+- POST /api/medical-records  
+- PUT /api/medical-records/:id  
 
 # Payments
-# - POST /api/payment/create  
-# - POST /api/payment/verify  
+- POST /api/payment/create  
+- POST /api/payment/verify  
 
 # 🚀 Deployment
 
 # Frontend
-# ```bash
-# cd Front-end
-# npm run build
-# ```
+```bash
+cd Front-end
+npm run build
+```
 
 # Backend
-# ```bash
-# cd Back-end
-# npm start
-# ```
-
-# 📄 License
-
-# This project is licensed under the ISC License.
+```bash
+cd Back-end
+npm start
+```
 
 # 🤝 Contributing
 
-# 1. Fork the repository  
-# 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)  
-# 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)  
-# 4. Push to the branch (`git push origin feature/AmazingFeature`)  
-# 5. Open a Pull Request  
+1. Fork the repository  
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)  
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)  
+4. Push to the branch (`git push origin feature/AmazingFeature`)  
+5. Open a Pull Request  
 
-# 📞 Support
 
-# For support, email support@arogya-vritti.life or visit our website at https://arogya-vritti.life
