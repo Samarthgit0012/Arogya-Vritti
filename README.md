@@ -37,19 +37,19 @@ A comprehensive telehealth platform designed to provide accessible healthcare se
 
 # 📦 Installation
 
-## Prerequisites
+### Prerequisites
 - Node.js (v16 or higher)  
 - MongoDB  
 - npm or yarn  
 
-## Frontend Setup
+### Frontend Setup
  ```bash
 cd Front-end
 npm install
 npm run dev
 ```
 
-## Backend Setup
+### Backend Setup
 ```bash
 cd Back-end
 npm install
@@ -61,6 +61,7 @@ npm run dev
 ### Frontend (.env)
 VITE_BACKEND_URL=http://localhost:8080
 
+
 ### Backend (.env)
 MONGODB_URI=your_mongodb_uri  
 JWT_SECRET=your_jwt_secret  
@@ -69,25 +70,26 @@ RAZORPAY_KEY_SECRET=your_razorpay_secret
 
 # 🗂️ Project Structure
 
-Arogya-Vritti/
-├── Front-end/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   ├── contexts/
-│   │   ├── hooks/
-│   │   └── lib/
-│   ├── public/
-│   └── assets/
-└── Back-end/
-    ├── src/
-    │   ├── controllers/
-    │   ├── models/
-    │   ├── routes/
-    │   ├── services/
-    │   └── utils/
-    └── uploads/
+Arogya-Vritti/ 
+├── Front-end/ 
+│   ├── src/ 
+│   │   ├── components/ 
+│   │   ├── pages/ 
+│   │   ├── services/ 
+│   │   ├── contexts/ 
+│   │   ├── hooks/ 
+│   │   └── lib/ 
+│   ├── public/ 
+│   └── assets/ 
+└── Back-end/ 
+    ├── src/ 
+    │   ├── controllers/ 
+    │   ├── models/ 
+    │   ├── routes/ 
+    │   ├── services/ 
+    │   └── utils/ 
+    └── uploads/ 
+    
 
 # 👥 Creators
 
