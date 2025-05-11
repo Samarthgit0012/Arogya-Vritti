@@ -55,7 +55,7 @@ const Index = () => {
                   <p>Telehealth Interface Preview</p>
                 </div>
               </div> */}
-              <img src="../../assets/telehealth.png" alt="Telehealth Interface Preview" className="rounded-lg shadow-lg p-0 flex items-center justify-center" />
+              <img src="https://img.freepik.com/premium-vector/cartoon-characters-online-doctor-consulting-his-patient-via-video-call_776652-1359.jpg" alt="Telehealth Interface Preview" className="rounded-lg shadow-lg p-0 flex items-center justify-center" />
             </div>
           </div>
         </div>
