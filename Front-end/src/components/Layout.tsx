@@ -87,7 +87,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 size="sm" 
                 onClick={() => {
                   localStorage.removeItem('isAuthenticated');
-                  window.location.href = '/auth';
+                  window.location.href = 'https://www.arogya-vritti.life';
                 }}
                 className="text-gray-700"
               >
