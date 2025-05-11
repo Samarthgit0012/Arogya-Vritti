@@ -24,7 +24,6 @@ const app = express();
 
 
 const allowedOrigins = [
-  'http://localhost:8081',
   'https://arogya-vritti-front-end.onrender.com',
   'https://arogya-vritti.life',
   'https://www.arogya-vritti.life'
