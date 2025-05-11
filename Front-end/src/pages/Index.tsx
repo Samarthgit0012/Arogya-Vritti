@@ -9,7 +9,7 @@ const Index = () => {
       <nav className="bg-white shadow-sm py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <div className="flex items-center">
-            <h1 className="text-xl font-bold text-blue-700">Arogya-Vritti</h1>
+            <h1 className="text-2xl font-bold text-blue-700">Arogya-Vritti</h1>
           </div>
           <div className="flex items-center gap-4">
             <Link to="/auth">
@@ -46,15 +46,16 @@ const Index = () => {
                 </Link>
               </div>
             </div>
-            <div className="hidden md:block">
-              <div className="aspect-video bg-white rounded-lg shadow-lg p-6 flex items-center justify-center">
-                <div className="text-center text-gray-400">
+            <div className="">
+              {/* <div className="aspect-video bg-white rounded-lg shadow-lg p-6 flex items-center justify-center">
+                <div className="text-center text--400">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                   <p>Telehealth Interface Preview</p>
                 </div>
-              </div>
+              </div> */}
+              <img src="/assets/telehealth.png" alt="Telehealth Interface Preview" className="rounded-lg shadow-lg p-0 flex items-center justify-center" />
             </div>
           </div>
         </div>
@@ -66,9 +67,8 @@ const Index = () => {
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-900">What is Arogya-Vritti?</h2>
             <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
-              A comprehensive telehealth platform designed to provide accessible healthcare 
-              services to everyone, anywhere. We connect patients with healthcare professionals 
-              through secure video consultations, AI-powered assistance, and real-time health monitoring.
+            A complete telehealth platform built to make healthcare accessible for everyone, anywhere.
+            We seamlessly connect patients with licensed medical professionals through secure video consultations, intelligent AI-driven support, and real-time health monitoring — all from the comfort of home. Projected reach:
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-8">
               <div className="text-center">
@@ -92,7 +92,7 @@ const Index = () => {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Core Services</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-4 gap-8">
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -101,26 +101,26 @@ const Index = () => {
               </div>
               <h3 className="text-xl font-semibold mb-2">Book Appointments</h3>
               <p className="text-gray-600">
-                Schedule virtual consultations with specialists at your convenience.
+                Easily schedule virtual consultations with healthcare specialists.
               </p>
             </div>
             
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Video Consultations</h3>
+              <h3 className="text-xl font-semibold mb-2">Emergency Services</h3>
               <p className="text-gray-600">
-                Face-to-face consultations from the comfort of your home.
+                Access nearby hospitals and urgent medical care without leaving your home.
               </p>
             </div>
             
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
               <h3 className="text-xl font-semibold mb-2">AI Health Assistant</h3>
@@ -128,7 +128,19 @@ const Index = () => {
                 Get quick answers to common health questions from our AI assistant.
               </p>
             </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <div className="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Personalised Dashboard</h3>
+              <p className="text-gray-600">
+                Track your health insights and appointments in one place with a tailored dashboard.
+              </p>
+            </div>
           </div>
+          
         </div>
       </section>
       
@@ -146,11 +158,11 @@ const Index = () => {
             </p>
             <div className="flex items-center">
               <div className="h-12 w-12 rounded-full bg-blue-200 flex items-center justify-center text-blue-600">
-                <span className="font-bold">MP</span>
+                <span className="font-bold">CS</span>
               </div>
               <div className="ml-4">
-                <p className="font-medium">Martha P.</p>
-                <p className="text-sm text-gray-500">Patient since 2022</p>
+                <p className="font-medium">Chirag Sinha</p>
+                <p className="text-sm text-gray-500">Patient since last few days</p>
               </div>
             </div>
           </div>
@@ -177,17 +189,46 @@ const Index = () => {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Legal</h4>
+              <h4 className="font-semibold mb-4">Connect with Creators</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="text-blue-200 hover:text-white">Privacy Policy</a></li>
-                <li><a href="#" className="text-blue-200 hover:text-white">Terms of Service</a></li>
-                <li><a href="#" className="text-blue-200 hover:text-white">HIPAA Compliance</a></li>
+                <li>
+                  <a href="https://www.linkedin.com/in/tryambakeshsatish/" target="_blank" rel="noopener noreferrer" className="text-blue-200 hover:text-white flex items-center">
+                    <svg className="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    Tryambakesh Satish
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/samarthsrivastava00/" target="_blank" rel="noopener noreferrer" className="text-blue-200 hover:text-white flex items-center">
+                    <svg className="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    Samarth Srivastava
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/rudra-tiwari1306/" target="_blank" rel="noopener noreferrer" className="text-blue-200 hover:text-white flex items-center">
+                    <svg className="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    Rudra Tiwari
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/supriya-pandey22/" target="_blank" rel="noopener noreferrer" className="text-blue-200 hover:text-white flex items-center">
+                    <svg className="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    Supriya Pandey
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Contact Us</h4>
               <ul className="space-y-2">
-                <li className="text-blue-200">Email: support@careanywhere.com</li>
+                <li className="text-blue-200">Email: support@arogya-vritti.life</li>
                 <li className="text-blue-200">Phone: +1 (555) 123-4567</li>
               </ul>
               <div className="flex space-x-4 mt-4">
