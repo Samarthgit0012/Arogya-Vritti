@@ -1,4 +1,4 @@
-# Arogya-Vritti - Telehealth Platform
+# 🤍 Arogya-Vritti - Telehealth Platform
 
 A comprehensive telehealth platform designed to provide accessible healthcare services to everyone, anywhere. We connect patients with healthcare professionals through secure video consultations, AI-powered assistance, and real-time health monitoring.
 
