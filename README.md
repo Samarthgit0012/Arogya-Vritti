@@ -14,7 +14,7 @@ A comprehensive telehealth platform designed to provide accessible healthcare se
 
 # 🚀 Tech Stack
 
-##Frontend
+### Frontend
 - React 18  
 - TypeScript  
 - Vite  
@@ -26,7 +26,7 @@ A comprehensive telehealth platform designed to provide accessible healthcare se
 - React Leaflet (Maps)  
 - Google AI Integration  
 
-# Backend
+### Backend
 - Node.js  
 - Express.js  
 - MongoDB  
@@ -37,19 +37,19 @@ A comprehensive telehealth platform designed to provide accessible healthcare se
 
 # 📦 Installation
 
-# Prerequisites
+## Prerequisites
 - Node.js (v16 or higher)  
 - MongoDB  
 - npm or yarn  
 
-# Frontend Setup
+## Frontend Setup
  ```bash
 cd Front-end
 npm install
 npm run dev
 ```
 
-# Backend Setup
+## Backend Setup
 ```bash
 cd Back-end
 npm install
@@ -58,10 +58,10 @@ npm run dev
 
 # 🔧 Environment Variables
 
-# Frontend (.env)
+### Frontend (.env)
 VITE_BACKEND_URL=http://localhost:8080
 
-# Backend (.env)
+### Backend (.env)
 MONGODB_URI=your_mongodb_uri  
 JWT_SECRET=your_jwt_secret  
 RAZORPAY_KEY_ID=your_razorpay_key  
@@ -107,33 +107,33 @@ Arogya-Vritti/
 
 # 📱 API Endpoints
 
-# Authentication
+#### Authentication
 - POST /api/auth/register  
 - POST /api/auth/login  
 
-# Appointments
+#### Appointments
 - GET /api/appointments  
 - POST /api/appointments  
 - PUT /api/appointments/:id  
 
-# Medical Records
+#### Medical Records
 - GET /api/medical-records  
 - POST /api/medical-records  
 - PUT /api/medical-records/:id  
 
-# Payments
+#### Payments
 - POST /api/payment/create  
 - POST /api/payment/verify  
 
 # 🚀 Deployment
 
-# Frontend
+### Frontend
 ```bash
 cd Front-end
 npm run build
 ```
 
-# Backend
+### Backend
 ```bash
 cd Back-end
 npm start
