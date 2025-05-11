@@ -1,13 +1,9 @@
-const express = require("express");
+import express from "express";
+import { getHospitals, getIPLocation, reverseGeocode } from "../controllers/geopifyController.js";
 const router = express.Router();
-const {
-  getHospitals,
-  getIPLocation,
-  reverseGeocode,
-} = require("../controllers/geopifyController");
 
 router.get("/hospitals", getHospitals);
 router.get("/ip-location", getIPLocation);
 router.get("/reverse-geocode", reverseGeocode);
 
-module.exports = router;
+export default router;

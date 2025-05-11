@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,6 +18,37 @@ const AddHealthReading: React.FC<AddHealthReadingProps> = ({ onReadingAdded }) =
   const [value, setValue] = useState('');
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [loading, setLoading] = useState(false);
+  const [hasMedicalHistory, setHasMedicalHistory] = useState(false);
+
+  useEffect(() => {
+    checkMedicalHistory();
+  }, []);
+
+  const checkMedicalHistory = async () => {
+    try {
+      const response = await api.get('/api/medical/records');
+      const data = response.data;
+      // Check if any of the required fields are filled
+      const hasHistory = data && (
+        data.bloodType ||
+        data.allergies ||
+        data.chronicConditions ||
+        data.medications ||
+        data.familyHistory ||
+        data.surgeries ||
+        (data.lifestyle && (
+          data.lifestyle.smoking ||
+          data.lifestyle.alcohol ||
+          data.lifestyle.exercise ||
+          data.lifestyle.diet
+        ))
+      );
+      setHasMedicalHistory(hasHistory);
+    } catch (error) {
+      console.error('Error checking medical history:', error);
+      setHasMedicalHistory(false);
+    }
+  };
 
   const validateInput = () => {
     if (!selectedMetric) {
@@ -87,6 +118,17 @@ const AddHealthReading: React.FC<AddHealthReadingProps> = ({ onReadingAdded }) =
 
       if (response.data) {
         toast.success('Reading added successfully');
+        if (!hasMedicalHistory) {
+          toast('Consider filling out your medical history for more accurate health insights', {
+            duration: 5000,
+            icon: '💡',
+            style: {
+              background: '#f0f9ff',
+              color: '#0369a1',
+              border: '1px solid #bae6fd',
+            },
+          });
+        }
         setOpen(false);
         setSelectedMetric('');
         setValue('');

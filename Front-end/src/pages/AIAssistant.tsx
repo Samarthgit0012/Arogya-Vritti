@@ -1,32 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Mic, StopCircle } from "lucide-react";
 
-const AIAssistant = () => {
-  const genAI = new GoogleGenerativeAI("AIzaSyD8WlOe8VLXNf1YytvgPMU3faSYdFnTlZM"); // Replace with your actual key
 
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
+const AIAssistant = () => {
   const [chatHistory, setChatHistory] = useState<
     { role: "user" | "doctor"; content: string }[]
   >([]);
   const [listening, setListening] = useState(false);
-  const chatSessionRef = useRef<any>(null);
   const recognitionRef = useRef<any>(null);
-
-  // Initialize Gemini chat session
-  useEffect(() => {
-    const initChat = async () => {
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-      const chatSession = await model.startChat({
-        history: [],
-      });
-      chatSessionRef.current = chatSession;
-    };
-
-    initChat();
-  }, []);
 
   // Start voice recognition
   const startListening = () => {
@@ -71,7 +56,6 @@ const AIAssistant = () => {
     try {
       setChatHistory((prev) => [...prev, { role: "user", content: text }]);
 
-      const chatSession = chatSessionRef.current;
       const prompt = `You are a professional and experienced healthcare doctor.
 Only respond like a qualified physician. Do not ask unnecessary questions.
 Do not respond like an assistant or AI.
@@ -79,12 +63,22 @@ If a patient describes symptoms, give them direct medical advice, possible medic
 Avoid saying "I am an AI" or "consult a doctor" unless there's a severe case.
 Speak professionally, in simple but clinical language. also detect the language the patient is using and use the same\nPatient: ${text}`;
 
-      const result = await chatSession.sendMessage(prompt);
-      const response = await result.response.text();
+      // Send prompt to backend AI proxy
+      const response = await fetch(`${BACKEND_URL}/api/ai/assistant`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt }),
+      });
+      const data = await response.json();
+      console.log(data);
+      const aiText =
+        data.result?.candidates?.[0]?.content?.parts?.[0]?.text ||
+        data.result?.result ||
+        "Sorry, I couldn't process your request.";
 
-      setChatHistory((prev) => [...prev, { role: "doctor", content: response }]);
+      setChatHistory((prev) => [...prev, { role: "doctor", content: aiText }]);
     } catch (error) {
-      console.error("Gemini API Error:", error);
+      console.error("AI API Error:", error);
     }
   };
 

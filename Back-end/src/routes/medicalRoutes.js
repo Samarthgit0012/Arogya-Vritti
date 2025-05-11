@@ -113,6 +113,18 @@ router.post('/health-metrics', auth, async (req, res) => {
       console.log('Creating new medical record for user:', req.user.id);
       medicalRecord = new MedicalRecord({ 
         userId: req.user.id,
+        bloodType: 'O+', // default valid enum
+        allergies: '',
+        chronicConditions: '',
+        medications: '',
+        familyHistory: '',
+        surgeries: '',
+        lifestyle: {
+          smoking: 'never', // default valid enum
+          alcohol: 'none',  // default valid enum
+          exercise: 'moderate', // default valid enum
+          diet: 'regular' // default valid enum
+        },
         healthMetrics: []
       });
     }
@@ -241,14 +253,16 @@ router.delete('/reports/:reportId', auth, async (req, res) => {
     }
 
     // Delete file from storage
-    const filePath = path.join(__dirname, '..', report.fileUrl);
+    const filePath = path.join(process.cwd(), report.fileUrl);
     if (fs.existsSync(filePath)) {
       fs.unlinkSync(filePath);
     }
 
-    // Remove report from array
-    record.reports.pull(req.params.reportId);
-    await record.save();
+    // Remove report from MongoDB
+    await MedicalRecord.updateOne(
+      { userId: req.user.id },
+      { $pull: { reports: { _id: req.params.reportId } } }
+    );
 
     res.json({ message: 'Report deleted successfully' });
   } catch (error) {

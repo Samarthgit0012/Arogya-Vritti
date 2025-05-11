@@ -1,5 +1,6 @@
-const axios = require('axios');
-require('dotenv').config();
+import axios from 'axios';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const GEOAPIFY_API_KEY = process.env.GEOAPIFY_API_KEY;
 
@@ -97,8 +98,4 @@ const reverseGeocode = async (req, res) => {
     }
 };
 
-module.exports = {
-    getHospitals,
-    getIPLocation,
-    reverseGeocode
-};
+export { getHospitals, getIPLocation, reverseGeocode };

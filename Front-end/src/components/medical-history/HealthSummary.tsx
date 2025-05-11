@@ -47,23 +47,23 @@ const HealthSummary: React.FC = () => {
     const fetchMetrics = async () => {
       try {
         const response = await api.get('/api/medical/health-metrics');
-        if (response.data) {
-          // Merge backend data into metricDefs
-          const sortedData = response.data.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-          const updated = metricDefs.map(metric => {
-            const data = sortedData.filter(d => d.type === metric.id).map(d => ({
-              date: new Date(d.date).toISOString().split('T')[0],
-              value: d.value,
-              type: d.type
-            }));
-            // If no data, generate a random curve
-            return {
-              ...metric,
-              data: data.length > 0 ? data : generateRandomCurve(metric)
-            };
-          });
-          setMetrics(updated);
-        }
+        // Always process, even if response.data is empty
+        const sortedData = Array.isArray(response.data)
+          ? response.data.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+          : [];
+        const updated = metricDefs.map(metric => {
+          const data = sortedData.filter(d => d.type === metric.id).map(d => ({
+            date: new Date(d.date).toISOString().split('T')[0],
+            value: d.value,
+            type: d.type
+          }));
+          // If no data, generate a random curve
+          return {
+            ...metric,
+            data: data.length > 0 ? data : generateRandomCurve(metric)
+          };
+        });
+        setMetrics(updated);
       } catch (e) {
         // On error, just use random curves for all
         setMetrics(metricDefs.map(m => ({ ...m, data: generateRandomCurve(m) })));

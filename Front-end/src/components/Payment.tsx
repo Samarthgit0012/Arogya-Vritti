@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
 import './Payment.css';
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
+
 
 declare global {
   interface Window {
@@ -22,7 +24,7 @@ const Payment = ({ amount, onSuccess, onError }: PaymentProps) => {
       setLoading(true);
       
       // Create order on backend
-      const { data } = await axios.post('http://localhost:8080/api/payment/create-order', {
+      const { data } = await axios.post(`${BACKEND_URL}/api/payment/create-order`, {
         amount: amount
       });
 
@@ -36,7 +38,7 @@ const Payment = ({ amount, onSuccess, onError }: PaymentProps) => {
         handler: async function (response: any) {
           try {
             // Verify payment on backend
-            const verification = await axios.post('http://localhost:8080/api/payment/verify-payment', {
+            const verification = await axios.post(`${BACKEND_URL}/api/payment/verify-payment`, {
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature: response.razorpay_signature
@@ -52,7 +54,7 @@ const Payment = ({ amount, onSuccess, onError }: PaymentProps) => {
           }
         },
         prefill: {
-          name: 'User Name',
+          name: 'UserName',
           email: 'user@example.com',
           contact: '9999999999'
         },

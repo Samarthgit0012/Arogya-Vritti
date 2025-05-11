@@ -15,8 +15,9 @@ import {
   Polyline,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 
-const GEOAPIFY_API_KEY = "ac185378194d4388acd495ad9941c0fc";
+// const GEOAPIFY_API_KEY = "ac185378194d4388acd495ad9941c0fc";
 
 interface HospitalProperties {
   name?: string;
@@ -87,7 +88,7 @@ const Emergency: React.FC = () => {
 
   const fetchHospitals = async (lat: number, lon: number, type: "nearby" | "selected") => {
     try {
-      const url = `https://api.geoapify.com/v2/places?categories=healthcare.hospital&filter=circle:${lon},${lat},5000&limit=5&apiKey=${GEOAPIFY_API_KEY}`;
+      const url = `${BACKEND_URL}/api/geoapify/hospitals?lat=${lat}&lon=${lon}`;
       const res = await fetch(url);
       const data = await res.json();
       if (type === "nearby") {
@@ -104,7 +105,7 @@ const Emergency: React.FC = () => {
 
   const reverseGeocode = async (lat: number, lon: number) => {
     try {
-      const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`);
+      const res = await fetch(`${BACKEND_URL}/api/geoapify/reverse-geocode?lat=${lat}&lon=${lon}`);
       const data = await res.json();
       if (data && data.address) {
         const { suburb, city, town, village, state } = data.address;
@@ -118,7 +119,7 @@ const Emergency: React.FC = () => {
 
   const fetchLocationByIP = async () => {
     try {
-      const response = await fetch(`https://api.geoapify.com/v1/ipinfo?apiKey=${GEOAPIFY_API_KEY}`);
+      const response = await fetch(`${BACKEND_URL}/api/geoapify/ip-location`);
       const data = await response.json();
       if (data && data.location) {
         const loc = { lat: data.location.latitude, lon: data.location.longitude };

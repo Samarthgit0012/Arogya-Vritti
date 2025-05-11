@@ -74,7 +74,7 @@ const SheCare: React.FC = () => {
       </h1>
 
       {/* 🔍 PCOD Symptoms Chart */}
-      <div className="w-full h-96">
+      <div className="w-full h-96 mb-16">
         <h2 className="text-2xl font-semibold mb-4 text-center text-pink-500">
           Common PCOD Symptoms & Their Indicative Strength
         </h2>
@@ -92,6 +92,7 @@ const SheCare: React.FC = () => {
           </BarChart>
         </ResponsiveContainer>
       </div>
+      <div className="h-8" />
 
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Left Column: Forms */}
