@@ -67,36 +67,14 @@ MONGODB_URI=your_mongodb_uri
 JWT_SECRET=your_jwt_secret  
 RAZORPAY_KEY_ID=your_razorpay_key  
 RAZORPAY_KEY_SECRET=your_razorpay_secret  
-
-# 🗂️ Project Structure
-
-Arogya-Vritti/ 
-├── Front-end/ 
-│   ├── src/ 
-│   │   ├── components/ 
-│   │   ├── pages/ 
-│   │   ├── services/ 
-│   │   ├── contexts/ 
-│   │   ├── hooks/ 
-│   │   └── lib/ 
-│   ├── public/ 
-│   └── assets/ 
-└── Back-end/ 
-    ├── src/ 
-    │   ├── controllers/ 
-    │   ├── models/ 
-    │   ├── routes/ 
-    │   ├── services/ 
-    │   └── utils/ 
-    └── uploads/ 
     
 
 # 👥 Creators
 
-- Tryambakesh Satish (https://www.linkedin.com/in/tryambakeshsatish/)  
-- Samarth Srivastava (https://www.linkedin.com/in/samarthsrivastava00/)  
-- Rudra Tiwari (https://www.linkedin.com/in/rudra-tiwari1306/)  
-- Supriya Pandey (https://www.linkedin.com/in/supriya-pandey22/)  
+- [Tryambakesh Satish](https://www.linkedin.com/in/tryambakeshsatish/)  
+- [Samarth Srivastava](https://www.linkedin.com/in/samarthsrivastava00/)  
+- [Rudra Tiwari](https://www.linkedin.com/in/rudra-tiwari1306/)  
+- [Supriya Pandey](https://www.linkedin.com/in/supriya-pandey22/)  
 
 # 🔐 Security Features
 
