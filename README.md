@@ -127,7 +127,12 @@ RAZORPAY_KEY_SECRET=your_razorpay_secret
 
 #### Payments
 - POST /api/payment/create  
-- POST /api/payment/verify  
+- POST /api/payment/verify
+
+#### Emergency(Nearby Hospitals)
+- GET /api/geoapify/hospitals
+- GET /api/geoapify/ip-location
+- GET /api/geoapify/reverse-geocode
 
 # 🚀 Deployment
 
